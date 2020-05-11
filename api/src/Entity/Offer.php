@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  *         "get"={"security"="is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_CANDIDAT') "},
  *         "post"={"security"="is_granted('ROLE_RECRUTEUR')"}
  *     },
+ *     itemOperations={
+ *          "get",
+ *          "put",
+ *          "patch",
+ *          "delete"
+ *
+ *     }
 )
  * @ORM\Entity(repositoryClass="App\Repository\OfferRepository")
  */
