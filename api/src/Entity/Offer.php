@@ -7,11 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource(
- *      collectionOperations={
- *         "get"={"security"="is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_CANDIDAT')"},
+ *     attributes={"security"="is_granted('ROLE_RECRUTEUR')"},
+ *     collectionOperations={
+ *         "get",
  *         "post"={"security"="is_granted('ROLE_RECRUTEUR')"}
  *     },
- * )
+)
  * @ORM\Entity(repositoryClass="App\Repository\OfferRepository")
  */
 class Offer
