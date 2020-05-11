@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ApiResource(
  *     attributes={"security"="is_granted('ROLE_RECRUTEUR')"},
  *     collectionOperations={
- *         "get",
+ *         "get"={"security"="is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_CANDIDAT') "},
  *         "post"={"security"="is_granted('ROLE_RECRUTEUR')"}
  *     },
 )
