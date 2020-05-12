@@ -12,8 +12,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource(
  *     attributes={"security"="is_granted('ROLE_RECRUTEUR')"},
- *     normalizationContext={"groups"={"show"}},
- *     denormalizationContext={"groups"={"create"}},
+ *     normalizationContext={"groups"={"read"}},
+ *     denormalizationContext={"groups"={"write"}},
  *     collectionOperations={
  *         "get"={"security"="is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_CANDIDAT')"},
  *         "post"={
@@ -41,31 +41,31 @@ class Offer
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"create"})
+     * @Groups({"read", "write"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"create"})
+     * @Groups({"read", "write"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"create"})
+     * @Groups({"read", "write"})
      */
     private $company_description;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"create"})
+     * @Groups({"read", "write"})
      */
     private $start_at;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"create"})
+     * @Groups({"read", "write"})
      */
     private $working_place;
 
