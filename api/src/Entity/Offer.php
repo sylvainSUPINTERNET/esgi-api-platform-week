@@ -4,13 +4,21 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\OneToMany;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ApiResource(
  *     attributes={"security"="is_granted('ROLE_RECRUTEUR')"},
+ *     normalizationContext={"groups"={"show"}},
+ *     denormalizationContext={"groups"={"create"}},
  *     collectionOperations={
- *         "get"={"security"="is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_CANDIDAT') "},
- *         "post"={"security"="is_granted('ROLE_RECRUTEUR')"}
+ *         "get"={"security"="is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_CANDIDAT')"},
+ *         "post"={
+ *              "security"="is_granted('ROLE_RECRUTEUR')"
+ *          }
  *     },
  *     itemOperations={
  *          "get",
@@ -33,28 +41,44 @@ class Offer
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"create"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"create"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"create"})
      */
     private $company_description;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"create"})
      */
     private $start_at;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"create"})
      */
     private $working_place;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Apply", mappedBy="offer")
+     */
+
+    private $applies;
+
+    public function __construct() {
+        $this->applies = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -120,4 +144,42 @@ class Offer
 
         return $this;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getApplies(): ArrayCollection
+    {
+        return $this->applies;
+    }
+
+    /**
+     * @param ArrayCollection $applies
+     */
+    public function setApplies(ArrayCollection $applies): void
+    {
+        $this->applies = $applies;
+    }
+
+    public function removeApply(Apply $apply): self
+    {
+        if ($this->applies->contains($apply)) {
+            $this->applies->removeElement($apply);
+            // set the owning side to null (unless already changed)
+            if ($apply->getOffer() === $this) {
+                $apply->setOffer(null);
+            }
+        }
+        return $this;
+    }
+
+    public function addApplies(Apply $apply): self
+    {
+        if (!$this->applies->contains($apply)) {
+            $this->applies[] = $apply;
+            $apply->setOffer($this);
+        }
+        return $this;
+    }
+
 }
