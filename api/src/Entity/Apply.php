@@ -6,6 +6,8 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ApiResource()
@@ -36,11 +38,6 @@ class Apply
     private $sexe;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    private $picture;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $email;
@@ -66,14 +63,25 @@ class Apply
     private $salary;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    private $cv;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Offer", inversedBy="applies")
+     * @ORM\JoinColumn(name="offer_id", referencedColumnName="id")
+     */
+    private $offer;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\MediaObject", cascade={"persist", "remove"})
+     */
+    private $profilePicture;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\MediaObject", cascade={"persist", "remove"})
+     */
+    private $cv;
 
     /**
      * @return mixed
@@ -90,12 +98,6 @@ class Apply
     {
         $this->status = $status;
     }
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Offer", inversedBy="applies")
-     * @ORM\JoinColumn(name="offer_id", referencedColumnName="id")
-     */
-    private $offer;
 
     public function getId(): ?int
     {
@@ -134,18 +136,6 @@ class Apply
     public function setSexe(string $sexe): self
     {
         $this->sexe = $sexe;
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(string $picture): self
-    {
-        $this->picture = $picture;
 
         return $this;
     }
@@ -210,18 +200,6 @@ class Apply
         return $this;
     }
 
-    public function getCv(): ?string
-    {
-        return $this->cv;
-    }
-
-    public function setCv(string $cv): self
-    {
-        $this->cv = $cv;
-
-        return $this;
-    }
-
     /**
      * @return mixed
      */
@@ -236,6 +214,30 @@ class Apply
     public function setOffer($offer): void
     {
         $this->offer = $offer;
+    }
+
+    public function getProfilePicture(): ?MediaObject
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(?MediaObject $profilePicture): self
+    {
+        $this->profilePicture = $profilePicture;
+
+        return $this;
+    }
+
+    public function getCv(): ?MediaObject
+    {
+        return $this->cv;
+    }
+
+    public function setCv(?MediaObject $cv): self
+    {
+        $this->cv = $cv;
+
+        return $this;
     }
 
 }
