@@ -164,6 +164,9 @@
             "config/packages/lexik_jwt_authentication.yaml"
         ]
     },
+    "mailjet/mailjet-apiv3-php": {
+        "version": "v1.4.1"
+    },
     "namshi/jose": {
         "version": "7.2.3"
     },
