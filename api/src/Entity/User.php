@@ -7,17 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ApiResource(collectionOperations={
- *     "post": {
- *         "method": "GET",
- *         "controller": SomeRandomController::class
- *     }
- * },itemOperations={
- *     "put": {
- *         "method": "GET",
- *         "controller": SomeRandomController::class
- *     }
- * })
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="`user`")
  */
