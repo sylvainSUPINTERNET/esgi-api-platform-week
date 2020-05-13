@@ -50,6 +50,13 @@ class Offre
      */
     private $applies;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="offres")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -135,5 +142,21 @@ class Offre
             $apply->setOffer($this);
         }
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
+    {
+        $this->user = $user;
     }
 }

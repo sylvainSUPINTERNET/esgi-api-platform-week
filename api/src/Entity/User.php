@@ -44,6 +44,12 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Offre", mappedBy="offre")
+     */
+    private $offres;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,5 +126,26 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function removeOffre(Offre $offre): self
+    {
+        if ($this->offres->contains($offre)) {
+            $this->offres->removeElement($offre);
+            // set the owning side to null (unless already changed)
+            if ($offre->getUser() === $this) {
+                $offre->setUser(null);
+            }
+        }
+        return $this;
+    }
+
+    public function addOffre(Offre $offre): self
+    {
+        if (!$this->offres->contains($offre)) {
+            $this->offres[] = $offre;
+            $offre->setUser($this);
+        }
+        return $this;
     }
 }
