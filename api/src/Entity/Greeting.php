@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * This is a dummy entity. Remove it!
  *
- * @ApiResource
  * @ORM\Entity
  */
 class Greeting

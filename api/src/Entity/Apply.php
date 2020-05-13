@@ -7,10 +7,27 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ApiResource()
+ *    @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_CANDIDAT')"},
+ *     normalizationContext={"groups"={"get"}},
+ *     itemOperations={
+ *         "get",
+ *         "put"={
+ *             "normalization_context"={"groups"={"put"}},
+ *             "denormalization_context"={"groups"={"put_in"}}
+ *         }
+ *     },
+ *    collectionOperations={
+ *         "post"={
+ *             "normalization_context"={"groups"={"post"}},
+ *             "denormalization_context"={"groups"={"post_in"}}
+ *         }
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\ApplyRepository")
  */
 class Apply
@@ -19,67 +36,80 @@ class Apply
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"get"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get", "put", "post", "post_in"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get", "put", "post", "post_in"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get", "put", "post", "post_in"})
      */
     private $sexe;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get", "put", "post", "post_in"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get", "put", "post", "post_in"})
      */
     private $age;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get", "put", "post", "post_in"})
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"get", "put", "post", "post_in"})
      */
     private $motivation;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get", "put", "post", "post_in"})
      */
     private $salary;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get", "put", "put_in", "post", "post_in"})
      */
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Offer", inversedBy="applies")
-     * @ORM\JoinColumn(name="offer_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Offre", inversedBy="applies")
+     * @ORM\JoinColumn(name="offre_id", referencedColumnName="id")
+     * @Groups({"get", "put", "post", "post_in"})
      */
     private $offer;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\MediaObject", cascade={"persist", "remove"})
+     * @Groups({"get", "put", "post", "post_in"})
      */
     private $profilePicture;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\MediaObject", cascade={"persist", "remove"})
+     * @Groups({"get", "put", "post", "post_in"})
      */
     private $cv;
 

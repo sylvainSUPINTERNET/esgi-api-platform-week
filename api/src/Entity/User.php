@@ -7,7 +7,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ApiResource()
+ *    @ApiResource(
+ *     normalizationContext={"groups"={"get"}},
+ *     itemOperations={
+ *         "get"
+ *     },
+ *    collectionOperations={
+ *          "get"
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="`user`")
  */
