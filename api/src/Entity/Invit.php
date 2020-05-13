@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  *    @ApiResource(
@@ -38,6 +39,13 @@ class Invit
      */
     private $email;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Offre", inversedBy="invits")
+     * @ORM\JoinColumn(name="offre_id", referencedColumnName="id")
+     * @Groups({"post", "get"})
+     */
+    private $offre;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -66,4 +74,21 @@ class Invit
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getOffre()
+    {
+        return $this->offre;
+    }
+
+    /**
+     * @param mixed $offre
+     */
+    public function setOffre($offre): void
+    {
+        $this->offre = $offre;
+    }
+
 }

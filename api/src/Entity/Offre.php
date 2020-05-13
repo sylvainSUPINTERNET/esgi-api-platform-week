@@ -29,7 +29,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *         }
  *     }
  * )
- * @ORM\Entity(repositoryClass="App\Repository\OfferRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\OffreRepository")
  */
 class Offre
 {
@@ -77,6 +77,12 @@ class Offre
      * @Groups({"get", "put", "put_in","post"})
      */
     private $applies;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Invit", mappedBy="offre")
+     * @Groups({"get", "put", "put_in","post"})
+     */
+    private $invits;
 
 
     /**
@@ -172,6 +178,28 @@ class Offre
         }
         return $this;
     }
+
+    public function removeInvits(Invit $invit): self
+    {
+        if ($this->invits->contains($invit)) {
+            $this->invits->removeElement($invit);
+            // set the owning side to null (unless already changed)
+            if ($invit->getOffre() === $this) {
+                $invit->setOffre(null);
+            }
+        }
+        return $this;
+    }
+
+    public function addInvits(Invit $invit): self
+    {
+        if (!$this->invits->contains($invit)) {
+            $this->invits[] = $invit;
+            $invit->setOffre($this);
+        }
+        return $this;
+    }
+
 
     /**
      * @return mixed
