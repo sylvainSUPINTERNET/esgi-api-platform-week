@@ -6,7 +6,17 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ *    @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_RECRUTEUR')"},
+ *     normalizationContext={"groups"={"get"}},
+ *     itemOperations={
+ *         "get"
+ *     },
+ *    collectionOperations={
+ *         "get",
+ *         "post"
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\InvitRepository")
  */
 class Invit

@@ -1,107 +1,113 @@
 <?php
 
-namespace App\Entity;
+//namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping\OneToMany;
-use Symfony\Component\Serializer\Annotation\Groups;
+//use ApiPlatform\Core\Annotation\ApiResource;
+//use Doctrine\ORM\Mapping as ORM;
+//use Doctrine\Common\Collections\ArrayCollection;
+//use Doctrine\ORM\Mapping\OneToMany;
+//use Symfony\Component\Serializer\Annotation\Groups;
 
+// normalize -> ouput
+// denormalize -> input
 
+/*
 /**
- * @ApiResource(
- *     attributes={"security"="is_granted('ROLE_RECRUTEUR')"},
- *     normalizationContext={"groups"={"show"}},
- *     denormalizationContext={"groups"={"create"}},
- *     collectionOperations={
- *         "get"={"security"="is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_CANDIDAT')"},
- *         "post"={
- *              "security"="is_granted('ROLE_RECRUTEUR')"
- *          }
- *     },
+ *  * @ApiResource(
+ *     normalizationContext={"groups"={"get"}},
  *     itemOperations={
- *          "get",
- *          "put",
- *          "patch",
- *          "delete"
- *
+ *         "get",
+ *         "put"={
+ *             "normalization_context"={"groups"={"put"}},
+ *             "denormalization_context"={"groups"={"put_in"}}
+ *         }
+ *     },
+ *    collectionOperations={
+ *         "post"={
+ *             "normalization_context"={"groups"={"post"}},
+ *             "denormalization_context"={"groups"={"post_in"}},
+ *             "security"="is_granted('ROLE_RECRUTEUR')"
+ *         }
  *     }
-)
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\OfferRepository")
  */
-class Offer
-{
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"create"})
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="text")
-     * @Groups({"create"})
-     */
-    private $description;
-
-    /**
-     * @ORM\Column(type="text")
-     * @Groups({"create"})
-     */
-    private $company_description;
-
-    /**
-     * @ORM\Column(type="datetime")
-     * @Groups({"create"})
-     */
-    private $start_at;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"create"})
-     */
-    private $working_place;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Apply", mappedBy="offer")
-     */
-
-    private $applies;
-
-    public function __construct() {
-        $this->applies = new ArrayCollection();
-    }
 
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
+//class Offer
+//{
+//  /**
+//   * @ORM\Id()
+//   * @ORM\GeneratedValue()
+//   * @ORM\Column(type="integer")
+//   * @Groups({"get"})
+//   */
+//  private $id;
+//
+//  /**
+//   * @ORM\Column(type="string", length=255)
+//   * @Groups({"get", "put", "put_in", "post_in"})
+//   */
+//  private $name;
+//
+//  /**
+//   * @ORM\Column(type="text")
+//   * @Groups({"get", "put", "put_in","post_in"})
+//   */
+//  private $description;
+//
+//  /**
+//   * @ORM\Column(type="text")
+//   * @Groups({"get", "put", "put_in","post_in"})
+//   */
+//  private $company_description;
+//
+//  /**
+//     * @ORM\Column(type="datetime")
+//   * @Groups({"get", "put", "put_in","post_in"})
+//   */
+//  private $start_at;
+//
+//  /**
+//   * @ORM\Column(type="string", length=255)
+//   * @Groups({"get", "put", "put_in","post","post_in"})
+//   */
+//  private $working_place;
+//
+//  /**
+//   * @ORM\OneToMany(targetEntity="Apply", mappedBy="offer")
+//   * @Groups({"get", "put", "put_in","post"})
+//   */
+//
+//  private $applies;
+//
+//  public function __construct() {
+//      $this->applies = new ArrayCollection();
+//  }
+//
+//
+//  public function getId(): ?int
+//  {
+//      return $this->id;
+//  }
+//
+//  public function getName(): ?string
+//  {
+//      return $this->name;
+//  }
+//
+//  public function setName(string $name): self
+//  {
+//      $this->name = $name;
+//
+//      return $this;
+//  }
+//
+//  public function getDescription(): ?string
+//  {
+//      return $this->description;
+//  }
+/*
     public function setDescription(string $description): self
     {
         $this->description = $description;
@@ -144,18 +150,20 @@ class Offer
 
         return $this;
     }
+*/
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getApplies(): ArrayCollection
-    {
-        return $this->applies;
-    }
+//  /**
+//   * @return ArrayCollection
+//    */
+//   public function getApplies(): ArrayCollection
+//   {
+//       return $this->applies;
+//   }
 
-    /**
-     * @param ArrayCollection $applies
-     */
+//  /**
+//  * @param ArrayCollection $applies
+//    */
+/*
     public function setApplies(ArrayCollection $applies): void
     {
         $this->applies = $applies;
@@ -181,5 +189,6 @@ class Offer
         }
         return $this;
     }
+*/
 
-}
+//}
