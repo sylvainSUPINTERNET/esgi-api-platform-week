@@ -52,6 +52,13 @@ class User implements UserInterface
      */
     private $offres;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Apply", mappedBy="user")
+     */
+    private $applies;
+
+
+
 
     public function getId(): ?int
     {
@@ -129,6 +136,27 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function removeApplies(Apply $apply): self
+    {
+        if ($this->applies->contains($apply)) {
+            $this->applies->removeElement($apply);
+            // set the owning side to null (unless already changed)
+            if ($apply->getUser() === $this) {
+                $apply->setUser(null);
+            }
+        }
+        return $this;
+    }
+
+    public function addApplies(Offre $apply): self
+    {
+        if (!$this->applies->contains($apply)) {
+            $this->applies[] = $apply;
+            $apply->setUser($this);
+        }
+        return $this;
     }
 
     public function removeOffre(Offre $offre): self

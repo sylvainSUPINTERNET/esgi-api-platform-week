@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  *    @ApiResource(
@@ -22,12 +24,14 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *         }
  *     },
  *    collectionOperations={
+ *          "get",
  *         "post"={
  *             "normalization_context"={"groups"={"post"}},
  *             "denormalization_context"={"groups"={"post_in"}}
  *         }
  *     }
  * )
+ * @ApiFilter(SearchFilter::class, properties={"user.email": "exact"})
  * @ORM\Entity(repositoryClass="App\Repository\ApplyRepository")
  */
 class Apply
@@ -41,49 +45,49 @@ class Apply
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      * @Groups({"get", "put", "post", "post_in"})
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      * @Groups({"get", "put", "post", "post_in"})
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      * @Groups({"get", "put", "post", "post_in"})
      */
     private $sexe;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      * @Groups({"get", "put", "post", "post_in"})
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      * @Groups({"get", "put", "post", "post_in"})
      */
     private $age;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      * @Groups({"get", "put", "post", "post_in"})
      */
     private $adresse;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=true)
      * @Groups({"get", "put", "post", "post_in"})
      */
     private $motivation;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      * @Groups({"get", "put", "post", "post_in"})
      */
     private $salary;
@@ -97,7 +101,7 @@ class Apply
     /**
      * @ORM\ManyToOne(targetEntity="Offre", inversedBy="applies")
      * @ORM\JoinColumn(name="offre_id", referencedColumnName="id")
-     * @Groups({"get", "put", "post", "post_in"})
+     * @Groups({"get", "put", "put_in", "post", "post_in"})
      */
     private $offer;
 
@@ -112,6 +116,13 @@ class Apply
      * @Groups({"get", "put", "post", "post_in"})
      */
     private $cv;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="applies")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @Groups({"get", "put", "post", "post_in", "put_in"})
+     */
+    private $user;
 
     /**
      * @return mixed
@@ -269,5 +280,22 @@ class Apply
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
+    {
+        $this->user = $user;
+    }
+
 
 }

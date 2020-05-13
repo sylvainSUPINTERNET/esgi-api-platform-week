@@ -2,22 +2,25 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  *    @ApiResource(
- *     attributes={"security"="is_granted('ROLE_RECRUTEUR')"},
  *     normalizationContext={"groups"={"get"}},
  *     itemOperations={
- *         "get"
+ *         "get",
+ *         "delete"
  *     },
  *    collectionOperations={
  *         "get",
  *         "post"
  *     }
  * )
+ * @ApiFilter(SearchFilter::class, properties={"token": "exact"})
  * @ORM\Entity(repositoryClass="App\Repository\InvitRepository")
  */
 class Invit

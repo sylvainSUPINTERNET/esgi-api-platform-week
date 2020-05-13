@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 
 /**
@@ -22,6 +24,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *         }
  *    },
  *    collectionOperations={
+ *          "get",
  *         "post"={
  *             "normalization_context"={"groups"={"post"}},
  *             "denormalization_context"={"groups"={"post_in"}},
@@ -29,6 +32,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *         }
  *     }
  * )
+ * @ApiFilter(SearchFilter::class, properties={"user.email": "exact"})
  * @ORM\Entity(repositoryClass="App\Repository\OffreRepository")
  */
 class Offre
@@ -74,7 +78,7 @@ class Offre
 
     /**
      * @ORM\OneToMany(targetEntity="Apply", mappedBy="offre")
-     * @Groups({"get", "put", "put_in","post"})
+     * @Groups({"get", "put", "post", "post_in"})
      */
     private $applies;
 
