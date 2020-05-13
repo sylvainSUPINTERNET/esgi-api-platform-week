@@ -1,18 +1,3 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-
-
-authentication_token:
-    path: /authentication_token
-    methods: ['POST']
-    
-register:
-    path: /register
-    controller: App\Controller\AuthController::register
-    methods: ['POST']
-    
-me:
-    path: /me
-    controller: App\Controller\TkController::me
-    methods: ['POST']
