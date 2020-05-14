@@ -14,7 +14,6 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  *    @ApiResource(
- *     attributes={"security"="is_granted('ROLE_CANDIDAT')"},
  *     itemOperations={
  *         "get",
  *         "put"={
