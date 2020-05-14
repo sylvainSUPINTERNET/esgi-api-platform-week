@@ -15,7 +15,6 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 /**
  *    @ApiResource(
  *     attributes={"security"="is_granted('ROLE_CANDIDAT')"},
- *     normalizationContext={"groups"={"get"}},
  *     itemOperations={
  *         "get",
  *         "put"={
@@ -46,49 +45,49 @@ class Apply
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
-     * @Groups({"get", "put", "post", "post_in"})
+     * @Groups({"get", "put", "post", "post_in", "put_in"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
-     * @Groups({"get", "put", "post", "post_in"})
+     * @Groups({"get", "put", "post", "post_in", "put_in"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
-     * @Groups({"get", "put", "post", "post_in"})
+     * @Groups({"get", "put", "post", "post_in", "put_in"})
      */
     private $sexe;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
-     * @Groups({"get", "put", "post", "post_in"})
+     * @Groups({"get", "put", "post", "post_in", "put_in"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
-     * @Groups({"get", "put", "post", "post_in"})
+     * @Groups({"get", "put", "post", "post_in", "put_in"})
      */
     private $age;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
-     * @Groups({"get", "put", "post", "post_in"})
+     * @Groups({"get", "put", "post", "post_in", "put_in"})
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="text",nullable=true)
-     * @Groups({"get", "put", "post", "post_in"})
+     * @Groups({"get", "put", "post", "post_in", "put_in"})
      */
     private $motivation;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
-     * @Groups({"get", "put", "post", "post_in"})
+     * @Groups({"get", "put", "post", "post_in", "put_in"})
      */
     private $salary;
 
@@ -107,13 +106,13 @@ class Apply
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\MediaObject", cascade={"persist", "remove"})
-     * @Groups({"get", "put", "post", "post_in"})
+     * @Groups({"get", "put", "post", "post_in", "put_in"})
      */
     private $profilePicture;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\MediaObject", cascade={"persist", "remove"})
-     * @Groups({"get", "put", "post", "post_in"})
+     * @Groups({"get", "put", "post", "post_in", "put_in"})
      */
     private $cv;
 
