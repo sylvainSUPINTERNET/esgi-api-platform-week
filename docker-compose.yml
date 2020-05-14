@@ -27,6 +27,7 @@ services:
       # if you develop on Linux, you may use a bind-mounted host directory instead
       - ./api/var:/srv/api/var:rw
       - dev-certs:/certs:ro,nocopy
+      - api-cache:/srv/api/var/cache:rw
 
   api:
     build:
@@ -148,3 +149,4 @@ services:
 volumes:
   db-data: {}
   dev-certs: {}
+  api-cache: {}
