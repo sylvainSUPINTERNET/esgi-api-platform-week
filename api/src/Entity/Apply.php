@@ -30,7 +30,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *         }
  *     }
  * )
- * @ApiFilter(SearchFilter::class, properties={"user.email": "exact"})
+ * @ApiFilter(SearchFilter::class, properties={"user.email": "exact", "offer": "exact"})
  * @ORM\Entity(repositoryClass="App\Repository\ApplyRepository")
  */
 class Apply
