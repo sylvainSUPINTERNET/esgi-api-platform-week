@@ -34,11 +34,13 @@ class Invit
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get"})
      */
     private $token;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get"})
      */
     private $email;
 
