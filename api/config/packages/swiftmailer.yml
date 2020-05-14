@@ -1,5 +1,5 @@
 swiftmailer:
-   url: '%env(MAILER_URL)%'
+  url: '%env(MAILER_URL)%'
 
 # swiftmailer:
 #     transport:        gmail
