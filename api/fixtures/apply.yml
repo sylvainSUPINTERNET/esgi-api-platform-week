@@ -1,0 +1,14 @@
+App\Entity\Apply:
+    apply_{1..10}:
+        offer: '@offre_*'
+        user: '@user_*'
+        name: <name()>
+        firstname: <firstname()>
+        sexe: <randomElement(['male','female'])>
+        email: <email()>
+        age: <numberBetween(20, 70)>
+        adresse: <address()>
+        motivation: <sentence(30)>
+        salary: <randomNumber()>
+        status: 'active'
+
