@@ -7,3 +7,13 @@ App\Entity\User:
         email: <email()>
         password: <password(10)>
         roles: ["ROLE_RECRUTEUR"]
+        
+    # Context for the test
+    user_candidat_ctx: 
+        email: "candidat@candidat.com"
+        password: "candidat"
+        roles: ["ROLE_CANDIDAT"]
+    user_recruteur_ctx: 
+        email: "recruteur@recruteur.com"
+        password: "recruteur"
+        roles: ["ROLE_RECRUTEUR"]
