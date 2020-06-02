@@ -1,0 +1,5 @@
+App\Entity\Invit:
+    invit_{1..10}:
+        offre: '@offre_*'
+        token: <md5()>
+        email: <email()>
