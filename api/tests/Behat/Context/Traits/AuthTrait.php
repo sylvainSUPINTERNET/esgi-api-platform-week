@@ -2,6 +2,10 @@
 
 namespace App\Tests\Behat\Context\Traits;
 
+use App\Tests\Behat\Manager\AuthManager;
+use App\Tests\Behat\Manager\FixtureManager;
+use Behat\Behat\Tester\Exception\PendingException;
+
 trait AuthTrait
 {
     /**
@@ -19,11 +23,20 @@ trait AuthTrait
     protected $authPassword;
 
     /**
+     * @var AuthManager
+     */
+    private AuthManager $authManager;
+
+    private string $jwt;
+
+    /**
      * @Given /^I authenticate with user "([^"]*)" and password "([^"]*)"$/
      */
     public function iAuthenticateWithEmailAndPassword($email, $password)
     {
+        $this->jwt = $this->authManager->generateAccessToken($email, $password);
         $this->authUser = $email;
         $this->authPassword = $password;
     }
+
 }

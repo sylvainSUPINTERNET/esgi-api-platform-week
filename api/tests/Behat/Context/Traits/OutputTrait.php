@@ -5,6 +5,7 @@ namespace App\Tests\Behat\Context\Traits;
 use App\Tests\Behat\Manager\OutputManager;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Testwork\Tester\Result\TestResult;
+use Symfony\Component\DomCrawler\Crawler;
 
 trait OutputTrait
 {
@@ -19,7 +20,6 @@ trait OutputTrait
     public function printLastResponse()
     {
         if ($this->lastResponse) {
-
             // Build the first line of the response (protocol, protocol version, statuscode, reason phrase)
             $response = 'HTTP/1.1 ' . $this->lastResponse->getStatusCode() . "\r\n";
 
@@ -48,26 +48,26 @@ trait OutputTrait
 
             $body = $this->lastResponse->getContent(false);
 
-            $this->printDebug('');
-            $this->printDebug('<error>Failure!</error> when making the following request:');
-            $this->printDebug(sprintf('<comment>%s</comment>: <info>%s</info>', $this->lastRequest->getMethod(), $this->lastRequest->getUri())."\n");
+            $this->outputManager->printDebug('');
+            $this->outputManager->printDebug('<error>Failure!</error> when making the following request:');
+            $this->outputManager->printDebug(sprintf('<comment>%s</comment>: <info>%s</info>', $this->lastRequest->getMethod(), $this->lastRequest->getUri())."\n");
 
             if (in_array($this->lastResponse->getHeaders()['content-type'], ['application/json', 'application/problem+json'])) {
-                $this->printDebug($this->prettifyJson($body));
+                $this->outputManager->printDebug($this->prettifyJson($body));
             } else {
                 // the response is HTML - see if we should print all of it or some of it
                 $isValidHtml = strpos($body, '</body>') !== false;
 
                 if($this->useFancyExceptionReporting && $isValidHtml) {
-                    $this->printDebug('<error>Failure!</error> Below is a summary of the HTML response from the server.');
+                    $this->outputManager->printDebug('<error>Failure!</error> Below is a summary of the HTML response from the server.');
 
                     // finds the h1 and h2 tags and prints them only
                     $crawler = new Crawler($body);
                     foreach($crawler->filter('h1, h2')->extract(array('_text')) as $header) {
-                        $this->printDebug(sprintf('        ' . $header));
+                        $this->outputManager->printDebug(sprintf('        ' . $header));
                     }
                 } else {
-                    $this->printDebug($body);
+                    $this->outputManager->printDebug($body);
                 }
             }
         }
