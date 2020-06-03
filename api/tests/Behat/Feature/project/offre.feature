@@ -109,3 +109,17 @@ Feature: _offre_
     Then the response status code should be 405
 
 
+  Scenario: USER - logged as ROLE_RECRUTEUR update (DELETE disabled)
+    Given I authenticate with user "recruteur@recruteur.com" and password "recruteur"
+    Then I have the role "ROLE_RECRUTEUR"
+    Then I request "DELETE /offres"
+    Then the response status code should be 405
+
+
+  Scenario: USER - logged as ROLE_CANDIDAT can't udpate offer (DELETE disabled)
+    Given I authenticate with user "candidat@candidat.com" and password "candidat"
+    Then I have the role "ROLE_CANDIDAT"
+    Then I request "DELETE /offres"
+    Then the response status code should be 405
+
+
