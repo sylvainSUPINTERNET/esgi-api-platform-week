@@ -13,8 +13,30 @@ class ReferenceManager
     public function __construct(IriConverterInterface $iriConverter, KernelInterface $kernel){}
 
     public function setCachedData($data){
-        //self::$cachedData = $data;
-        array_push(self::$cachedData, $data);
+        $incKey = "";
+        $keyAlreadyExist = false;
+
+        foreach($data as $key=>$val) {
+            $incKey = $key;
+        }
+
+        if(sizeof(self::$cachedData) === 0) {
+            array_push(self::$cachedData, $data);
+        } else {
+            foreach(self::$cachedData as $k=>$v) {
+                foreach(self::$cachedData[$k] as $ky=>$vy) {
+                    var_dump($ky);
+                    if($ky === $incKey) {
+                        $keyAlreadyExist = true;
+                    }
+                }
+            }
+
+            if(!$keyAlreadyExist) {
+                array_push(self::$cachedData, $data);
+            }
+        }
+
     }
 
 

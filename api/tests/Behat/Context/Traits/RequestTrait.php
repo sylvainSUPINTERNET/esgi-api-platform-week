@@ -199,11 +199,30 @@ trait RequestTrait
     public function iRequestWithContext($httpMethod, $resource, $property)
     {
 
-        // TODO -> POST applies avec link user / offres
-        // TODO -> gestion multiples clé
-        // TODO -> on a déjà user en principe ? vérifier currentUser
+
+        // TODO
+        // TODO -> add test for post with apply
+        // TODO -> clean code
+        // TODO end
+
         $cached = $this->referenceManager::$cachedData; // array on $data->{"hydra:member"}
-        var_dump($cached);
+
+        $correctKey = "";
+        $correctPosition = "";
+        foreach($cached as $key=>$value) {
+            foreach($cached[$key] as $k=>$v) {
+                var_dump(":::::::::::::::::::::::::::::::::::::::::::::");
+                var_dump("correctk key name", $k);
+                var_dump("correctk position", $key);
+                var_dump(":::::::::::::::::::::::::::::::::::::::::::::");
+                if(str_replace('/', '', $resource) === $k) {
+                    $correctKey = $k;
+                    $correctPosition = $key;
+                }
+            }
+        }
+
+        //var_dump($cached);
         //var_dump($cached->{"hydra:member"}[0]->{$property});
         //var_dump($resource);
 
@@ -218,9 +237,10 @@ trait RequestTrait
 
         $this->lastRequest = new Request(
             $httpMethod,
-            // TODO -> $cached[0] -> offres / [1] -> applies / [2] -> user ?
-
-            $cached[0][str_replace('/', '', $resource)]->{"hydra:member"}[0]->{$property}, // $resource
+            // get the correct key
+            // 2 behaviors (currentUser is not list)
+            // for list by default take the first element
+            $correctKey === "currentUser" ? $cached[$correctPosition][$correctKey][0]->{$property} : $cached[$correctPosition][$correctKey]->{"hydra:member"}[0]->{$property},
             $this->requestHeaders,
             json_encode($this->requestPayload)
         );

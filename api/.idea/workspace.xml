@@ -5,9 +5,10 @@
       <change beforePath="$PROJECT_DIR$/../.idea/esgi-api-platform-week.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/esgi-api-platform-week.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Behat/Context/Traits/ContextDataTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Context/Traits/ContextDataTrait.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Behat/Context/Traits/RequestTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Context/Traits/RequestTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Behat/Manager/AuthManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Manager/AuthManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Feature/stack.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Feature/tag.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Feature/user.feature" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Behat/Manager/ReferenceManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Manager/ReferenceManager.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -232,7 +233,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589440656871</updated>
       <workItem from="1589440658370" duration="2080000" />
-      <workItem from="1591171562123" duration="30111000" />
+      <workItem from="1591171562123" duration="33468000" />
     </task>
     <servers />
   </component>
