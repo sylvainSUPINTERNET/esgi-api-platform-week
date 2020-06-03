@@ -215,7 +215,7 @@ trait RequestTrait
 
         $this->lastRequest = new Request(
             $httpMethod,
-            $cached->{"hydra:member"}[0]->{$property}, // $resource
+            $cached[str_replace('/', '', $resource)]->{"hydra:member"}[0]->{$property}, // $resource
             $this->requestHeaders,
             json_encode($this->requestPayload)
         );

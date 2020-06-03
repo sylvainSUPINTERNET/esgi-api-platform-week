@@ -44,8 +44,15 @@ trait ContextDataTrait
      * @Then /^save result in context as "([^"]*)"$/
      */
 
+    // Cache data
     public function saveResultInContextAs($keyName)
     {
+
+        var_dump("cache data with key " . $keyName);
+        $data = json_decode($this->lastResponse->getContent());
+        $this->referenceManager->setCachedData([$keyName=>$data]);
+        var_dump($this->referenceManager::$cachedData);
+
         /*
         var_dump("begin", $this->contextDataManager->getState());
         $data = json_decode($this->lastResponse->getContent());
@@ -63,9 +70,7 @@ trait ContextDataTrait
 
         //$this->contextDataManager->addValueToState([$keyName => "value"]);
         */
-        var_dump("cache data");
-        $data = json_decode($this->lastResponse->getContent());
-        $this->referenceManager->setCachedData($data);
+
         //var_dump($this->referenceManager::$cachedData);
 
     }

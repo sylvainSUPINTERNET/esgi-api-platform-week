@@ -13,6 +13,7 @@ Feature: _applies_
     And the "hydra:member" property should be an array
     And the "hydra:member" property should contain 10 items
     And the "hydra:totalItems" property should be an integer equalling "10"
+    #cached data
     Then save result in context as "applies"
 
   Scenario: USER - logged as ROLE_RECRUTEUR and requests for offres
