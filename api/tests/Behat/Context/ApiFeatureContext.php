@@ -5,6 +5,7 @@ namespace App\Tests\Behat\Context;
 use App\Tests\Behat\Manager\AuthManager;
 use App\Tests\Behat\Manager\FixtureManager;
 use App\Tests\Behat\Manager\OutputManager;
+use App\Tests\Behat\Manager\RequestManager;
 use App\Tests\Behat\Context\Traits\{
     AuthTrait,
     FixturesTrait,
@@ -35,12 +36,13 @@ class ApiFeatureContext implements Context
     /**
      * Initializes context.
      */
-    public function __construct(KernelInterface $kernel, FixtureManager $fixtureManager, OutputManager $outputManager, AuthManager $authManager)
+    public function __construct(KernelInterface $kernel, FixtureManager $fixtureManager, OutputManager $outputManager, AuthManager $authManager, RequestManager $requestManager)
     {
         $this->client = $kernel->getContainer()->get('test.api_platform.client');
         $this->fixtureManager = $fixtureManager;
         $this->outputManager = $outputManager;
         $this->authManager = $authManager;
+        $this->requestManager = $requestManager;
     }
 
     /**

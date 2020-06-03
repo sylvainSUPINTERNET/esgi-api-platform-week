@@ -4,7 +4,10 @@ namespace App\Tests\Behat\Context\Traits;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use App\Tests\Behat\Manager\AuthManager;
+use App\Tests\Behat\Manager\RequestManager;
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
+use Doctrine\ORM\EntityManagerInterface;
 use GuzzleHttp\Psr7\Request;
 
 trait RequestTrait
@@ -13,6 +16,11 @@ trait RequestTrait
      * @var AuthManager
      */
     private AuthManager $authManger;
+
+    /**
+     * @var RequestManager
+     */
+    private RequestManager $requestManager;
 
     /**
      * Payload of the request
@@ -73,7 +81,7 @@ trait RequestTrait
 
         if($this->authManager->getAccessToken()) {
             $this->requestHeaders = array(
-                "Content-type" => "application/json-ld",
+                "Content-type" => "application/ld+json",
                 "Authorization" => "Bearer " . $this->authManager->getAccessToken()
             );
         }
@@ -170,6 +178,18 @@ trait RequestTrait
 
         return $this->lastResponse;
     }
+
+    /*
+    /**
+     * @Then /^retrieve random "([^"]*)"$/
+     */
+    /*
+    public function retrieveRandom($entityName)
+    {
+        $this->requestManager->retrieveDataFromEntities($entityName);
+
+    }
+    */
 
     /**
      * Return the response payload from the current response.
