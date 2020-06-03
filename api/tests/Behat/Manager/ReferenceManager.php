@@ -13,7 +13,8 @@ class ReferenceManager
     public function __construct(IriConverterInterface $iriConverter, KernelInterface $kernel){}
 
     public function setCachedData($data){
-        self::$cachedData = $data;
+        //self::$cachedData = $data;
+        array_push(self::$cachedData, $data);
     }
 
 

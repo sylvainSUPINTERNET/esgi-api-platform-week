@@ -24,14 +24,16 @@ class AuthManager implements ProcessorInterface
     private $em;
     private $accessToken;
     private $contextDataManager;
+    private $referenceManager;
 
-    public function __construct(IriConverterInterface $iriConverter, KernelInterface $kernel, FixtureManager $fixtureManager,JWTTokenManagerInterface $JWTManager, EntityManagerInterface $entityManager,ContextDataManager $contextDataManager)
+    public function __construct(IriConverterInterface $iriConverter, KernelInterface $kernel, FixtureManager $fixtureManager,JWTTokenManagerInterface $JWTManager, EntityManagerInterface $entityManager,ContextDataManager $contextDataManager, ReferenceManager $referenceManager)
     {
         $this->fixtureLoader = $kernel->getContainer()->get('fidry_alice_data_fixtures.loader.doctrine');
         $this->fixtureManager = $fixtureManager;
         $this->em = $entityManager;
         $this->JWTManager = $JWTManager;
         $this->contextDataManager = $contextDataManager;
+        $this->referenceManager = $referenceManager;
     }
 
     public function generateAccessToken($email, $password): string {
@@ -43,7 +45,9 @@ class AuthManager implements ProcessorInterface
 
         $this->accessToken = $accessToken;
 
-        $this->contextDataManager->addValueToState(["currentUser" => $user]);
+        //$this->contextDataManager->addValueToState(["currentUser" => $user]);
+        $this->referenceManager->setCachedData(["currentUser"=> $user]);
+
 
 
         return $accessToken;

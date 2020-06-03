@@ -199,8 +199,11 @@ trait RequestTrait
     public function iRequestWithContext($httpMethod, $resource, $property)
     {
 
-        // TODO -> GET / POST pour utilisé non plus la DB mais les données en cache
+        // TODO -> POST applies avec link user / offres
+        // TODO -> gestion multiples clé
+        // TODO -> on a déjà user en principe ? vérifier currentUser
         $cached = $this->referenceManager::$cachedData; // array on $data->{"hydra:member"}
+        var_dump($cached);
         //var_dump($cached->{"hydra:member"}[0]->{$property});
         //var_dump($resource);
 
@@ -215,10 +218,13 @@ trait RequestTrait
 
         $this->lastRequest = new Request(
             $httpMethod,
-            $cached[str_replace('/', '', $resource)]->{"hydra:member"}[0]->{$property}, // $resource
+            // TODO -> $cached[0] -> offres / [1] -> applies / [2] -> user ?
+
+            $cached[0][str_replace('/', '', $resource)]->{"hydra:member"}[0]->{$property}, // $resource
             $this->requestHeaders,
             json_encode($this->requestPayload)
         );
+
 
         try {
             // Send request

@@ -51,7 +51,18 @@ trait ContextDataTrait
         var_dump("cache data with key " . $keyName);
         $data = json_decode($this->lastResponse->getContent());
         $this->referenceManager->setCachedData([$keyName=>$data]);
+        var_dump(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----");
+        var_dump(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----");
+        var_dump(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----");
+        var_dump(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----");
+
         var_dump($this->referenceManager::$cachedData);
+
+        var_dump(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----");
+        var_dump(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----");
+        var_dump(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----");
+        var_dump(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----");
+
 
         /*
         var_dump("begin", $this->contextDataManager->getState());
