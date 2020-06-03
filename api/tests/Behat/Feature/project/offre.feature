@@ -4,7 +4,6 @@ Feature: _offre_
       | user          |
       | offre         |
 
-
   Scenario: USER - logged as ROLE_CANDIDAT and requests for offres
     Given I authenticate with user "candidat@candidat.com" and password "candidat"
     Then I have the role "ROLE_CANDIDAT"
@@ -15,6 +14,15 @@ Feature: _offre_
     And the "hydra:totalItems" property should be an integer equalling "10"
     Then scope into the "hydra:search" property
     And the "hydra:template" property should equal "/offres{?user.email,user.email[]}"
+    # set reference manager static cachedData
+    And save result in context as "offres"
+
+
+  Scenario: USER - logged as ROLE_CANDIDAT and requests for one offre
+    Given I authenticate with user "candidat@candidat.com" and password "candidat"
+    Then I have the role "ROLE_CANDIDAT"
+    Then I request "GET /offres" with context "@id"
+    Then the response status code should be 200
 
   Scenario: USER - logged as ROLE_RECRUTEUR and requests for offres
     Given I authenticate with user "recruteur@recruteur.com" and password "recruteur"
@@ -121,5 +129,7 @@ Feature: _offre_
     Then I have the role "ROLE_CANDIDAT"
     Then I request "DELETE /offres"
     Then the response status code should be 405
+
+
 
 

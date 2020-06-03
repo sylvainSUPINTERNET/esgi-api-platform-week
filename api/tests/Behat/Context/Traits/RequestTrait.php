@@ -4,6 +4,8 @@ namespace App\Tests\Behat\Context\Traits;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use App\Tests\Behat\Manager\AuthManager;
+use App\Tests\Behat\Manager\FixtureManager;
+use App\Tests\Behat\Manager\ReferenceManager;
 use App\Tests\Behat\Manager\RequestManager;
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
@@ -21,6 +23,16 @@ trait RequestTrait
      * @var RequestManager
      */
     private RequestManager $requestManager;
+
+    /**
+     * @var FixtureManager
+     */
+    private FixtureManager $fixtureManager;
+
+    /**
+     * @var ReferenceManager
+     */
+    private ReferenceManager $referenceManager;
 
     /**
      * Payload of the request
@@ -72,11 +84,13 @@ trait RequestTrait
         $this->requestPayload = json_decode($requestPayload->getRaw());
     }
 
+
     /**
      * @When /^I request "(GET|PUT|POST|DELETE|PATCH) ([^"]*)"$/
      */
     public function iRequest($httpMethod, $resource)
     {
+
         $method = strtoupper($httpMethod);
 
         if($this->authManager->getAccessToken()) {
@@ -179,17 +193,58 @@ trait RequestTrait
         return $this->lastResponse;
     }
 
-    /*
     /**
-     * @Then /^retrieve random "([^"]*)"$/
+     * @Then /^I request "(GET|PUT|POST|DELETE|PATCH) ([^"]*)" with context "([^"]*)"$/
      */
-    /*
-    public function retrieveRandom($entityName)
+    public function iRequestWithContext($httpMethod, $resource, $property)
     {
-        $this->requestManager->retrieveDataFromEntities($entityName);
 
+        // TODO -> GET / POST pour utilisé non plus la DB mais les données en cache
+        $cached = $this->referenceManager::$cachedData; // array on $data->{"hydra:member"}
+        //var_dump($cached->{"hydra:member"}[0]->{$property});
+        //var_dump($resource);
+
+        $method = strtoupper($httpMethod);
+
+        if($this->authManager->getAccessToken()) {
+            $this->requestHeaders = array(
+                "Content-type" => "application/ld+json",
+                "Authorization" => "Bearer " . $this->authManager->getAccessToken()
+            );
+        }
+
+        $this->lastRequest = new Request(
+            $httpMethod,
+            $cached->{"hydra:member"}[0]->{$property}, // $resource
+            $this->requestHeaders,
+            json_encode($this->requestPayload)
+        );
+
+        try {
+            // Send request
+            $this->lastResponse = $this->client->request(
+                $method,
+                $resource,
+                [
+                    'headers' => $this->requestHeaders,
+                    'body'    => json_encode($this->requestPayload),
+                ]
+            );
+
+        } catch (\Exception $e) {
+            $response = $e->getMessage();
+
+            if ($response === null) {
+                throw $e;
+            }
+
+            $this->lastResponse = $e->getMessage();
+            throw new \Exception('Bad response.');
+        }
     }
-    */
+
+
+
 
     /**
      * Return the response payload from the current response.

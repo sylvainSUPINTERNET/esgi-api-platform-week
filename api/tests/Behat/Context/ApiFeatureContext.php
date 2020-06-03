@@ -3,18 +3,19 @@
 namespace App\Tests\Behat\Context;
 
 use App\Tests\Behat\Manager\AuthManager;
+use App\Tests\Behat\Manager\ContextDataManager;
 use App\Tests\Behat\Manager\FixtureManager;
 use App\Tests\Behat\Manager\OutputManager;
+use App\Tests\Behat\Manager\ReferenceManager;
 use App\Tests\Behat\Manager\RequestManager;
-use App\Tests\Behat\Context\Traits\{
-    AuthTrait,
+use App\Tests\Behat\Context\Traits\{AuthTrait,
+    ContextDataTrait,
     FixturesTrait,
     HookTrait,
     OutputTrait,
     RequestTrait,
     ScopeTrait,
-    UtilsTrait
-};
+    UtilsTrait};
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use SebastianBergmann\CodeCoverage\Report\PHP;
@@ -32,17 +33,20 @@ class ApiFeatureContext implements Context
     use AuthTrait;
     use ScopeTrait;
     use OutputTrait;
+    use ContextDataTrait;
 
     /**
      * Initializes context.
      */
-    public function __construct(KernelInterface $kernel, FixtureManager $fixtureManager, OutputManager $outputManager, AuthManager $authManager, RequestManager $requestManager)
+    public function __construct(KernelInterface $kernel, FixtureManager $fixtureManager, OutputManager $outputManager, AuthManager $authManager, RequestManager $requestManager, ContextDataManager $contextDataManager, ReferenceManager $referenceManager)
     {
         $this->client = $kernel->getContainer()->get('test.api_platform.client');
         $this->fixtureManager = $fixtureManager;
         $this->outputManager = $outputManager;
         $this->authManager = $authManager;
         $this->requestManager = $requestManager;
+        $this->contextDataManager = $contextDataManager;
+        $this->referenceManager = $referenceManager;
     }
 
     /**

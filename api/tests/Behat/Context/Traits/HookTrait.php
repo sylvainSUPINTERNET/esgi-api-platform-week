@@ -34,6 +34,7 @@ trait HookTrait
         //var_dump("after sena");
         $this->requestHeaders["content-type"] = "";
         StaticDriver::rollBack();
+        //StaticDriver::commit();
     }
 
     /**
