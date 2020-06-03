@@ -1,4 +1,4 @@
-Feature: _Usert_
+Feature: _offre_
   Background:
     Given the following fixtures files are loaded:
       | user          |
@@ -7,5 +7,7 @@ Feature: _Usert_
 
   Scenario: USER - logged as ROLE_CANDIDAT and requests for offres
     Given I authenticate with user "candidat@candidat.com" and password "candidat"
+    Then I have the role "ROLE_CANDIDAT"
+
     Then I request "GET /offres"
 

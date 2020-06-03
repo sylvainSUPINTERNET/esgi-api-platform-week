@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ChangeListManager">
-    <list default="true" id="5fec695b-374f-4bb6-9f67-9e13f47f798d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/esgi-api-platform-week.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/esgi-api-platform-week.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Behat/Context/ApiFeatureContext.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Context/ApiFeatureContext.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Behat/Context/Traits/AuthTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Context/Traits/AuthTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Behat/Context/Traits/RequestTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Context/Traits/RequestTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Behat/Feature/offre.feature" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Feature/project/offre.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Behat/Manager/AuthManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Manager/AuthManager.php" afterDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
@@ -198,49 +171,10 @@
       <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
     </include_path>
   </component>
-  <component name="ProjectId" id="1bt9jLjJHbrakCQeTrQdJdrQpSg" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tests/Behat/Feature/project" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
-      <method v="2" />
-    </configuration>
-    <configuration name="behat.yml" type="PhpBehatConfigurationType">
-      <BehatRunner scope="Yml" />
-      <method v="2" />
-    </configuration>
-  </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="5fec695b-374f-4bb6-9f67-9e13f47f798d" name="Default Changelist" comment="" />
-      <created>1589440656871</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1589440656871</updated>
-      <workItem from="1589440658370" duration="2080000" />
-      <workItem from="1591171562123" duration="319000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
+    </phpunit_settings>
   </component>
 </project>

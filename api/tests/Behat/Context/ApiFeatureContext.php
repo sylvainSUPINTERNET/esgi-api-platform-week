@@ -16,9 +16,11 @@ use App\Tests\Behat\Context\Traits\{
 };
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
+use SebastianBergmann\CodeCoverage\Report\PHP;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 require_once __DIR__  . '/../../../bin/.phpunit/phpunit-7.5-0/src/Framework/Assert/Functions.php';
+
 
 class ApiFeatureContext implements Context
 {
@@ -325,4 +327,22 @@ class ApiFeatureContext implements Context
             $value
         );
     }
+
+
+    /**
+     * @Then /^I have the role "([^"]*)"$/
+     */
+    public function iHaveTheRole($roleName)
+    {
+
+
+        $jwt = $this->authManager->getAccessToken();
+        $decodedObject = $this->authManager->decodeToken($jwt);
+
+
+        // assert
+        assertTrue($decodedObject->roles[0] === $roleName, "Role target : " . $roleName . " but the JWT role is ".$decodedObject->roles[0]);
+
+    }
+
 }

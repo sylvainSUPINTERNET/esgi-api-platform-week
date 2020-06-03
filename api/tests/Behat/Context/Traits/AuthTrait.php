@@ -2,6 +2,7 @@
 
 namespace App\Tests\Behat\Context\Traits;
 
+use App\Tests\Behat\Context\ApiFeatureContext;
 use App\Tests\Behat\Manager\AuthManager;
 use App\Tests\Behat\Manager\FixtureManager;
 use Behat\Behat\Tester\Exception\PendingException;
@@ -27,6 +28,11 @@ trait AuthTrait
      */
     private AuthManager $authManager;
 
+    /**
+     * @var ApiFeatureContext
+     */
+    private ApiFeatureContext $apiFeatureContext;
+
     private string $jwt;
 
     /**
@@ -38,5 +44,7 @@ trait AuthTrait
         $this->authUser = $email;
         $this->authPassword = $password;
     }
+
+
 
 }

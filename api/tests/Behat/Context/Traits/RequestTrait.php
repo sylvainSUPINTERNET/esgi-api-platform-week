@@ -3,11 +3,17 @@
 namespace App\Tests\Behat\Context\Traits;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
+use App\Tests\Behat\Manager\AuthManager;
 use Behat\Gherkin\Node\PyStringNode;
 use GuzzleHttp\Psr7\Request;
 
 trait RequestTrait
 {
+    /**
+     * @var AuthManager
+     */
+    private AuthManager $authManger;
+
     /**
      * Payload of the request
      *
@@ -89,6 +95,13 @@ trait RequestTrait
                 ]
             );
             var_dump($this->lastResponse);
+            var_dump("JWT FOR REQUEST TODO ADD TO HEADER -> ", $this->authManager->getAccessToken());
+            var_dump("test");
+            var_dump($this->authManager->decodeToken($this->authManager->getAccessToken()));
+            // TODO -> parse the token with tokenExtractor ex : https://symfonycasts.com/screencast/symfony-rest4/jwt-guard-authenticator
+            // TODO -> add test " I authenticated succesffuly <ROLE_NAME> dans un authTrait
+            // TODO -> add dans le header le token dans les requêtes ici
+
         } catch (\Exception $e) {
             $response = $e->getMessage();
 
