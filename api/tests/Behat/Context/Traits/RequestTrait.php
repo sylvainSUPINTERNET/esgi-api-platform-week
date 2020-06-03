@@ -73,7 +73,7 @@ trait RequestTrait
 
         if($this->authManager->getAccessToken()) {
             $this->requestHeaders = array(
-                "Content-type" => "application/json-ld",
+                "Content-type" => "application/ld+json",
                 "Authorization" => "Bearer " . $this->authManager->getAccessToken()
             );
         }
