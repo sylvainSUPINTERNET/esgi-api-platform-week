@@ -1,6 +1,13 @@
 App\Entity\Offre:
-    offre_{1..10}:
+    offre_{1..9}:
         user: '@user_*'
+        name: <name()>
+        description: <sentence(10)>
+        company_description: <sentence(10)>
+        start_at: <dateTime()>
+        working_place: <name()>
+    ofrre_recruteur:
+        user: '@user_candidat_ctx'
         name: <name()>
         description: <sentence(10)>
         company_description: <sentence(10)>

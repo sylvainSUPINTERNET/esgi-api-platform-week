@@ -27,7 +27,6 @@ trait FixturesTrait
     public function theFixturesFilesAreLoaded(TableNode $table)
     {
         $files = array_map(fn($row) => './fixtures/' . $row[0] . '.yaml', $table->getRows());
-
         $this->fixtureManager->load($files);
     }
 

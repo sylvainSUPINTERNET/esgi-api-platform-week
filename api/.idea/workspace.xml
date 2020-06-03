@@ -4,7 +4,17 @@
     <list default="true" id="5fec695b-374f-4bb6-9f67-9e13f47f798d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/esgi-api-platform-week.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/esgi-api-platform-week.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/behat.yml.dist" beforeDir="false" afterPath="$PROJECT_DIR$/behat.yml.dist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fixtures/offre.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fixtures/offre.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Context/ApiFeatureContext.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Context/ApiFeatureContext.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Context/Traits/FixturesTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Context/Traits/FixturesTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Context/Traits/HookTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Context/Traits/HookTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Context/Traits/RequestTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Context/Traits/RequestTrait.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Behat/Feature/project/offre.feature" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Feature/project/offre.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Manager/AuthManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Manager/AuthManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Manager/FixtureManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Manager/FixtureManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Manager/ReferenceManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Manager/ReferenceManager.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +238,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589440656871</updated>
       <workItem from="1589440658370" duration="2080000" />
-      <workItem from="1591171562123" duration="6842000" />
+      <workItem from="1591171562123" duration="28825000" />
     </task>
     <servers />
   </component>
@@ -240,9 +250,18 @@
       <screen x="0" y="23" width="1440" height="832" />
     </state>
     <state x="539" y="139" key="#com.intellij.ide.util.MemberChooser/0.23.1440.832@0.23.1440.832" timestamp="1591177269355" />
-    <state x="471" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1591177297164">
+    <state x="2068" y="263" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1591200058338">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2068" y="263" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.832/1440.23.1920.1057@1440.23.1920.1057" timestamp="1591200058338" />
+    <state x="471" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.832@0.23.1440.832" timestamp="1591177297164" />
+    <state x="2033" y="284" key="NewPhpClassDialog" timestamp="1591200095371">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2033" y="284" key="NewPhpClassDialog/0.23.1440.832/1440.23.1920.1057@1440.23.1920.1057" timestamp="1591200095371" />
+    <state x="385" y="179" width="670" height="58" key="search.everywhere.popup" timestamp="1591205643718">
       <screen x="0" y="23" width="1440" height="832" />
     </state>
-    <state x="471" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.832@0.23.1440.832" timestamp="1591177297164" />
+    <state x="385" y="179" width="670" height="58" key="search.everywhere.popup/0.23.1440.832@0.23.1440.832" timestamp="1591205643718" />
   </component>
 </project>
