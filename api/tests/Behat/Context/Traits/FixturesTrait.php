@@ -3,6 +3,7 @@
 namespace App\Tests\Behat\Context\Traits;
 
 use App\Tests\Behat\Manager\FixtureManager;
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\TableNode;
 
 trait FixturesTrait
@@ -29,4 +30,6 @@ trait FixturesTrait
 
         $this->fixtureManager->load($files);
     }
+
+
 }

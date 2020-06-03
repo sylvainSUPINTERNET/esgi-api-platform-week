@@ -71,10 +71,11 @@ trait RequestTrait
     {
         $method = strtoupper($httpMethod);
 
-        $options = array();
-
-        if($this->authUser) {
-            $options = ['auth' => [$this->authUser, $this->authPassword]];
+        if($this->authManager->getAccessToken()) {
+            $this->requestHeaders = array(
+                "Content-type" => "application/json-ld",
+                "Authorization" => "Bearer " . $this->authManager->getAccessToken()
+            );
         }
 
         $this->lastRequest = new Request(
@@ -94,13 +95,6 @@ trait RequestTrait
                     'body'    => json_encode($this->requestPayload),
                 ]
             );
-            var_dump($this->lastResponse);
-            var_dump("JWT FOR REQUEST TODO ADD TO HEADER -> ", $this->authManager->getAccessToken());
-            var_dump("test");
-            var_dump($this->authManager->decodeToken($this->authManager->getAccessToken()));
-            // TODO -> parse the token with tokenExtractor ex : https://symfonycasts.com/screencast/symfony-rest4/jwt-guard-authenticator
-            // TODO -> add test " I authenticated succesffuly <ROLE_NAME> dans un authTrait
-            // TODO -> add dans le header le token dans les requêtes ici
 
         } catch (\Exception $e) {
             $response = $e->getMessage();
