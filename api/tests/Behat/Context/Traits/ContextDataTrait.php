@@ -56,7 +56,7 @@ trait ContextDataTrait
         var_dump(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----");
         var_dump(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----");
 
-        var_dump($this->referenceManager::$cachedData);
+        //var_dump($this->referenceManager::$cachedData);
 
         var_dump(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----");
         var_dump(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----");

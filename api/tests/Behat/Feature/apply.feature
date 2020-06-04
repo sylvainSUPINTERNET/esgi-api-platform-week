@@ -92,9 +92,10 @@ Feature: _applies_
         "motivation": "string",
         "salary": "string",
         "status": "string",
+        "user": ""
       }
     """
-    Then I request "POST /applies"
+    Then I request "POST /applies" with context body "user"
     Then the response status code should be 400
 
 

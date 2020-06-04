@@ -198,23 +198,16 @@ trait RequestTrait
      */
     public function iRequestWithContext($httpMethod, $resource, $property)
     {
-
-
-        // TODO
-        // TODO -> add test for post with apply
-        // TODO -> clean code
-        // TODO end
-
         $cached = $this->referenceManager::$cachedData; // array on $data->{"hydra:member"}
 
         $correctKey = "";
         $correctPosition = "";
         foreach($cached as $key=>$value) {
             foreach($cached[$key] as $k=>$v) {
-                var_dump(":::::::::::::::::::::::::::::::::::::::::::::");
+               /* var_dump(":::::::::::::::::::::::::::::::::::::::::::::");
                 var_dump("correctk key name", $k);
                 var_dump("correctk position", $key);
-                var_dump(":::::::::::::::::::::::::::::::::::::::::::::");
+                var_dump(":::::::::::::::::::::::::::::::::::::::::::::");*/
                 if(str_replace('/', '', $resource) === $k) {
                     $correctKey = $k;
                     $correctPosition = $key;
@@ -240,7 +233,7 @@ trait RequestTrait
             // get the correct key
             // 2 behaviors (currentUser is not list)
             // for list by default take the first element
-            $correctKey === "currentUser" ? $cached[$correctPosition][$correctKey][0]->{$property} : $cached[$correctPosition][$correctKey]->{"hydra:member"}[0]->{$property},
+            $correctKey === "currentUser" ? $cached[$correctPosition][$correctKey][0]->{"id"} : $cached[$correctPosition][$correctKey]->{"hydra:member"}[0]->{$property},
             $this->requestHeaders,
             json_encode($this->requestPayload)
         );
@@ -269,7 +262,95 @@ trait RequestTrait
         }
     }
 
+    // POST / PUT only
+    /**
+     * @Then /^I request "(GET|PUT|POST|DELETE|PATCH) ([^"]*)" with context body "([^"]*)"$/
+     */
+    public function iRequestWithContextBody($httpVerb,$resource, $body)
+    {
+        $cached = $this->referenceManager::$cachedData; // array on $data->{"hydra:member"}
 
+        $properties = explode(' ', $body);
+        $method = strtoupper($httpVerb);
+
+        $map = [];
+
+        foreach($properties as $property) {
+            $search = $property === "user" ? "currentUser" : $property;
+
+            $correctKey = "";
+            $correctPosition = "";
+            $mapValue = [];
+            foreach($cached as $key=>$value) {
+                foreach($cached[$key] as $k=>$v) {
+
+                    if($search === $k) {
+                        $correctKey = $k;
+                        $correctPosition = $key;
+
+                        array_push($map, [$property => $correctKey === "currentUser" ?
+                            "/users/".$cached[$correctPosition][$correctKey][0]->{"id"}
+                            : $correctKey."/".$cached[$correctPosition][$correctKey]->{"hydra:member"}[0]->{"@id"}]);
+                    }
+                }
+            }
+        }
+
+
+        if($this->authManager->getAccessToken()) {
+            $this->requestHeaders = array(
+                "Content-type" => "application/ld+json",
+                "Authorization" => "Bearer " . $this->authManager->getAccessToken()
+            );
+        }
+
+        // FOR each json element where the key is contains in search array, replace the value by the map value
+        foreach($this->requestPayload as $key=>$element) {
+            //var_dump($key . " : " . $element);
+            foreach($map as $km=>$vm) {
+                foreach($vm as $ak => $av) {
+                    if($ak === $key) {
+                        $this->requestPayload->{$ak} = $av;
+                    }
+                }
+            }
+        }
+
+        var_dump($this->referenceManager::$cachedData);
+        $this->lastRequest = new Request(
+            $httpVerb,
+            // get the correct key
+            // 2 behaviors (currentUser is not list)
+            // for list by default take the first element
+        "/",
+            $this->requestHeaders,
+            json_encode($this->requestPayload)
+        );
+
+
+        try {
+            // Send request
+            $this->lastResponse = $this->client->request(
+                $method,
+                $resource,
+                [
+                    'headers' => $this->requestHeaders,
+                    'body'    => json_encode($this->requestPayload),
+                ]
+            );
+
+        } catch (\Exception $e) {
+            $response = $e->getMessage();
+
+            if ($response === null) {
+                throw $e;
+            }
+
+            $this->lastResponse = $e->getMessage();
+            throw new \Exception('Bad response.');
+        }
+
+    }
 
 
     /**
