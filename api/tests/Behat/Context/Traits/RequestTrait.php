@@ -262,7 +262,7 @@ trait RequestTrait
         }
     }
 
-    // POST / PUT only
+    // POST / PUT only -> old way
     /**
      * @Then /^I request "(GET|PUT|POST|DELETE|PATCH) ([^"]*)" with context body "([^"]*)"$/
      */
@@ -316,13 +316,124 @@ trait RequestTrait
             }
         }
 
-        var_dump($this->referenceManager::$cachedData);
+        //var_dump($this->referenceManager::$cachedData);
         $this->lastRequest = new Request(
             $httpVerb,
             // get the correct key
             // 2 behaviors (currentUser is not list)
             // for list by default take the first element
         "/",
+            $this->requestHeaders,
+            json_encode($this->requestPayload)
+        );
+
+
+        try {
+            // Send request
+            $this->lastResponse = $this->client->request(
+                $method,
+                $resource,
+                [
+                    'headers' => $this->requestHeaders,
+                    'body'    => json_encode($this->requestPayload),
+                ]
+            );
+
+        } catch (\Exception $e) {
+            $response = $e->getMessage();
+
+            if ($response === null) {
+                throw $e;
+            }
+
+            $this->lastResponse = $e->getMessage();
+            throw new \Exception('Bad response.');
+        }
+
+    }
+
+    /**
+     * @Then /^I request "(GET|PUT|POST|DELETE|PATCH) ([^"]*)" with fields "([^"]*)" equal "([^"]*)"$/
+     * @param $payloadField -> field name to find in the json and set the value with the iri build from $propertiesToLink
+     * @param $propertiesToLink -> value1=value2 ---> value1 is the iri name like /users and value2 is the key to find the value
+     */
+    public function iRequestWithData($method, $resource, $payloadFields,$propertiesToLink)
+    {
+        $method = strtoupper($method);
+        if($this->authManager->getAccessToken()) {
+            $this->requestHeaders = array(
+                "Content-type" => "application/ld+json",
+                "Authorization" => "Bearer " . $this->authManager->getAccessToken()
+            );
+        }
+        $payloadFieldsArray = explode(' ', $payloadFields);
+        $properties = explode(' ', $propertiesToLink);
+        $listProps = []; // contains value for iri /$uriLinkedProps/<here>
+        $uriLinkedProps = []; // contains value to make the iri /<here>
+
+        $linkFieldWithCacheKeyName = [];
+        $linkforIri = [];
+
+        foreach($properties as $key=>$prop){
+            array_push($uriLinkedProps, explode('=', $prop)[0]);
+            array_push($listProps, explode('=', $prop)[1]);
+            foreach($payloadFieldsArray as $field) {
+                array_push($linkforIri, [explode('=', $prop)[0]=> $field ]);
+                array_push($linkFieldWithCacheKeyName, [explode('=', $prop)[1]=> $field ]);
+            }
+        }
+
+        //var_dump($this->referenceManager::$newCache);
+
+        $possibleValue = [];
+        foreach ($listProps as $val) {
+            var_dump($val);
+            array_push($possibleValue, [$val => array()] );
+        }
+
+        foreach($this->referenceManager::$newCache as $key=>$cachedValue) {
+            foreach($cachedValue as $keyb=>$obj){
+                //var_dump("keyb" . $keyb);
+                //var_dump($keyb . " : " . $obj->{"id"});
+                foreach($listProps as $val) {
+                   if($val === $keyb) {
+                       //var_dump($possibleValue[0][$keyb]);
+                       array_push($possibleValue[0][$keyb], $obj->{"id"});
+                   }
+                }
+            }
+        }
+
+        //var_dump("possible", $possibleValue);
+
+
+        //var_dump($this->referenceManager::$newCache);
+
+
+        foreach($this->requestPayload as $key=>$element) {
+
+            foreach($linkFieldWithCacheKeyName as $k=>$val) {
+                foreach($val as $l=>$y){
+                    foreach($linkforIri as $k2=>$v2) {
+                        foreach($v2 as $x=>$o){
+                            if($y == $key){
+                                $this->requestPayload->{$key} = "/".$x."/".end($possibleValue[0][$l]);
+                            }
+                        }
+
+                    }
+
+                }
+            }
+        }
+
+        var_dump($this->requestPayload);
+
+
+
+        $this->lastRequest = new Request(
+            $method,
+            $resource,
             $this->requestHeaders,
             json_encode($this->requestPayload)
         );

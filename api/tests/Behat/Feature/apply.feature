@@ -95,8 +95,9 @@ Feature: _applies_
         "user": ""
       }
     """
-    Then I request "POST /applies" with context body "user"
-    Then the response status code should be 400
+    Then I request "POST /applies" with fields "user" equal "users=user_recruteur_ctx"
+    Then the response status code should be 201
+    #Then I request "POST /applies" with context body "user"
 
 
 

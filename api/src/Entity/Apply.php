@@ -40,7 +40,7 @@ class Apply
      * @ORM\Column(type="integer")
      * @Groups({"get"})
      */
-    private $id;
+    public $id;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)

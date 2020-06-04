@@ -5,11 +5,12 @@
       <change beforePath="$PROJECT_DIR$/../.idea/esgi-api-platform-week.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/esgi-api-platform-week.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Behat/Context/Traits/ContextDataTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Context/Traits/ContextDataTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Apply.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Apply.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Offre.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Offre.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Behat/Context/Traits/RequestTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Context/Traits/RequestTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Behat/Feature/project/apply.feature" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Feature/apply.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Behat/Feature/project/offre.feature" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Feature/offre.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Feature/apply.feature" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Feature/apply.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Manager/FixtureManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Manager/FixtureManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Behat/Manager/ReferenceManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Behat/Manager/ReferenceManager.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +214,7 @@
       <recent name="$PROJECT_DIR$/tests/Behat/Feature/project" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Behat.behat.yml">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
@@ -235,6 +236,7 @@
       <updated>1589440656871</updated>
       <workItem from="1589440658370" duration="2080000" />
       <workItem from="1591171562123" duration="37714000" />
+      <workItem from="1591285233270" duration="8699000" />
     </task>
     <servers />
   </component>
@@ -255,13 +257,16 @@
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state x="2033" y="284" key="NewPhpClassDialog/0.23.1440.832/1440.23.1920.1057@1440.23.1920.1057" timestamp="1591200095371" />
-    <state x="421" y="194" width="706" height="490" key="find.popup" timestamp="1591260379975">
-      <screen x="0" y="23" width="1440" height="832" />
+    <state x="2001" y="240" width="942" height="623" key="find.popup" timestamp="1591287726505">
+      <screen x="1440" y="23" width="1920" height="1057" />
     </state>
+    <state x="2001" y="240" width="942" height="623" key="find.popup/0.23.1440.832/1440.23.1920.1057@1440.23.1920.1057" timestamp="1591287726505" />
     <state x="421" y="194" width="706" height="490" key="find.popup/0.23.1440.832@0.23.1440.832" timestamp="1591260379975" />
-    <state x="385" y="179" width="670" height="58" key="search.everywhere.popup" timestamp="1591205643718">
-      <screen x="0" y="23" width="1440" height="832" />
+    <state x="1953" y="213" width="894" height="158" key="search.everywhere.popup" timestamp="1591291931045">
+      <screen x="1440" y="23" width="1920" height="1012" />
     </state>
+    <state x="1953" y="221" width="894" height="158" key="search.everywhere.popup/0.23.1440.832/1440.23.1920.1057@1440.23.1920.1057" timestamp="1591290241490" />
     <state x="385" y="179" width="670" height="58" key="search.everywhere.popup/0.23.1440.832@0.23.1440.832" timestamp="1591205643718" />
+    <state x="1953" y="213" width="894" height="158" key="search.everywhere.popup/0.23.1440.877/1440.23.1920.1012@1440.23.1920.1012" timestamp="1591291931045" />
   </component>
 </project>
