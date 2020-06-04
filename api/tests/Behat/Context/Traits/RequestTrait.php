@@ -193,6 +193,9 @@ trait RequestTrait
         return $this->lastResponse;
     }
 
+
+
+    // deprecated
     /**
      * @Then /^I request "(GET|PUT|POST|DELETE|PATCH) ([^"]*)" with context "([^"]*)"$/
      */
@@ -262,7 +265,7 @@ trait RequestTrait
         }
     }
 
-    // POST / PUT only -> old way
+    // deprecated
     /**
      * @Then /^I request "(GET|PUT|POST|DELETE|PATCH) ([^"]*)" with context body "([^"]*)"$/
      */
