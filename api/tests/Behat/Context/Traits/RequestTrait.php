@@ -207,20 +207,12 @@ trait RequestTrait
         $correctPosition = "";
         foreach($cached as $key=>$value) {
             foreach($cached[$key] as $k=>$v) {
-               /* var_dump(":::::::::::::::::::::::::::::::::::::::::::::");
-                var_dump("correctk key name", $k);
-                var_dump("correctk position", $key);
-                var_dump(":::::::::::::::::::::::::::::::::::::::::::::");*/
                 if(str_replace('/', '', $resource) === $k) {
                     $correctKey = $k;
                     $correctPosition = $key;
                 }
             }
         }
-
-        //var_dump($cached);
-        //var_dump($cached->{"hydra:member"}[0]->{$property});
-        //var_dump($resource);
 
         $method = strtoupper($httpMethod);
 
@@ -309,7 +301,6 @@ trait RequestTrait
 
         // FOR each json element where the key is contains in search array, replace the value by the map value
         foreach($this->requestPayload as $key=>$element) {
-            //var_dump($key . " : " . $element);
             foreach($map as $km=>$vm) {
                 foreach($vm as $ak => $av) {
                     if($ak === $key) {
@@ -319,7 +310,6 @@ trait RequestTrait
             }
         }
 
-        //var_dump($this->referenceManager::$cachedData);
         $this->lastRequest = new Request(
             $httpVerb,
             // get the correct key
@@ -386,18 +376,14 @@ trait RequestTrait
             }
         }
 
-        //var_dump($this->referenceManager::$newCache);
 
         $possibleValue = [];
         foreach ($listProps as $val) {
-            var_dump($val);
             array_push($possibleValue, [$val => array()] );
         }
 
         foreach($this->referenceManager::$newCache as $key=>$cachedValue) {
             foreach($cachedValue as $keyb=>$obj){
-                //var_dump("keyb" . $keyb);
-                //var_dump($keyb . " : " . $obj->{"id"});
                 foreach($listProps as $val) {
                    if($val === $keyb) {
                        //var_dump($possibleValue[0][$keyb]);
@@ -406,12 +392,6 @@ trait RequestTrait
                 }
             }
         }
-
-        //var_dump("possible", $possibleValue);
-
-
-        //var_dump($this->referenceManager::$newCache);
-
 
         foreach($this->requestPayload as $key=>$element) {
 
@@ -429,10 +409,6 @@ trait RequestTrait
                 }
             }
         }
-
-        var_dump($this->requestPayload);
-
-
 
         $this->lastRequest = new Request(
             $method,

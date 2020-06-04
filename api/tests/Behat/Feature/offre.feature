@@ -17,7 +17,6 @@ Feature: _offre_
     # set reference manager static cachedData
     And save result in context as "offres"
 
-
   Scenario: USER - logged as ROLE_CANDIDAT and requests for one offre
     Given I authenticate with user "candidat@candidat.com" and password "candidat"
     Then I have the role "ROLE_CANDIDAT"
@@ -129,6 +128,25 @@ Feature: _offre_
     Then I have the role "ROLE_CANDIDAT"
     Then I request "DELETE /offres"
     Then the response status code should be 405
+
+  Scenario: USER - logged as ROLE_RECRUTEUR add new offer
+    Given I authenticate with user "recruteur@recruteur.com" and password "recruteur"
+    Then I have the role "ROLE_RECRUTEUR"
+    Given I have the payload
+    """
+      {
+        "name": "string",
+        "description": "string",
+        "companyDescription": "string",
+        "startAt": "2020-06-04T18:24:36.907Z",
+        "workingPlace": "string",
+        "applies": [],
+        "user": ""
+      }
+    """
+    Then I request "POST /offres" with fields "user" equal "users=user_recruteur_ctx"
+    Then the response status code should be 201
+    #Then I request "POST /applies" with context body "user"
 
 
 

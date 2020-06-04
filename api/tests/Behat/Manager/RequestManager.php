@@ -24,21 +24,6 @@ class RequestManager implements ProcessorInterface
         $this->em = $entityManager;
     }
 
-    /*
-    public function retrieveDataFromEntities($entityName){
-
-        $entities = $this->em->getConfiguration()->getMetadataDriverImpl()->getAllClassNames();
-        // TODO -> explo
-        // TODO -> get all and select one
-        // TODO -> return
-        foreach ($entities as $className) {
-            $expl = explode($className, "/");
-            //var_dump($expl[2]);
-            var_dump($className);
-        }
-    }
-    */
-
     public function preProcess(string $id, $object): void
     {
         // TODO: Implement preProcess() method.
